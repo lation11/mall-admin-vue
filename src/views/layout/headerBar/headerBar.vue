@@ -2,7 +2,7 @@
     <div class="home-header">
         <div class="home-header-left">
             <a-button type="primary" @click="toggleCollapsed">
-                <a-icon :type="collapsed ? 'menu-unfold' : 'menu-fold'" />
+                <a-icon :type="$store.state.buttons.collapsed ? 'menu-unfold' : 'menu-fold'" />
             </a-button>
             <a-breadcrumb>
                 <a-breadcrumb-item>首页</a-breadcrumb-item>
@@ -18,14 +18,10 @@
 
 <script>
 export default {
-    props: {
-        collapsed:{
-            type:Boolean
-        }
-    },
+    
     methods: {
         toggleCollapsed() {
-            this.$emit('update:collapsed',!this.collapsed )
+            this.$store.dispatch('asyncChangeCollapsed')
         },
     },
 }

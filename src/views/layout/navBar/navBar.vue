@@ -1,7 +1,7 @@
 <template>
     <div class="nav-bar">
         <a-menu :default-selected-keys="['1']" :default-open-keys="['sub1']" mode="inline" theme="dark"
-            :inline-collapsed="collapsed">
+            :inline-collapsed="$store.state.buttons.collapsed">
             <a-menu-item key="1">
                 <a-icon type="pie-chart" />
                 <span>Option 1</span>
@@ -52,11 +52,7 @@
 
 <script>
 export default {
-    props: {
-        collapsed: {
-            type: Boolean
-        }
-    }
+    
 }
 </script>
 

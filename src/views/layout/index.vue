@@ -1,8 +1,8 @@
 <template>
     <div class="home-container">
-        <NavBar :collapsed="collapsed"></NavBar>
-        <div class="home-main" :style="{ marginLeft: (collapsed ? '80px' : '180px') }">
-          <HeaderBar :collapsed.sync="collapsed"></HeaderBar>
+        <NavBar></NavBar>
+        <div class="home-main" :style="{ marginLeft: ($store.state.buttons.collapsed ? '80px' : '180px') }">
+          <HeaderBar></HeaderBar>
         </div>
     </div>
 
@@ -19,9 +19,11 @@ export default {
     },
     data() {
         return {
-            collapsed: false,
         };
     },
+    created(){
+        console.log(this.$store.getters.getCollapsed)   
+    }
   
 };
 </script>
