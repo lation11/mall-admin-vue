@@ -72,6 +72,7 @@ export default {
         loginUserApi() {
             loginUser(this.loginForm)
             .then((res) => { 
+                this.$store.dispatch('setUserInfo',res)
                 this.$router.push({name:'home'})
              })
             .catch((err) => {

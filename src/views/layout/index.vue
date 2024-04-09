@@ -3,6 +3,7 @@
         <NavBar></NavBar>
         <div class="home-main" :style="{ marginLeft: ($store.state.buttons.collapsed ? '80px' : '180px') }">
           <HeaderBar></HeaderBar>
+          <router-view></router-view>
         </div>
     </div>
 

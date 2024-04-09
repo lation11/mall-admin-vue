@@ -4,25 +4,44 @@
             <a-button type="primary" @click="toggleCollapsed">
                 <a-icon :type="$store.state.buttons.collapsed ? 'menu-unfold' : 'menu-fold'" />
             </a-button>
-            <a-breadcrumb>
-                <a-breadcrumb-item>首页</a-breadcrumb-item>
-                <a-breadcrumb-item><a href="">操作</a></a-breadcrumb-item>
+            <a-breadcrumb v-if="currentRoute.length>0">
+                <a-breadcrumb-item>{{currentRoute[0]?currentRoute[0].meta.title:""}}</a-breadcrumb-item>
+                <a-breadcrumb-item><a href=""></a>{{ currentRoute[1]?currentRoute[1].meta.title:"" }}</a-breadcrumb-item>
             </a-breadcrumb>
         </div>
         <ul class="home-use-box">
-            <li>你好 admin<a-icon class="icon-down" type="down" /></li>
-            <li>退出</li>
+            <li>你好 {{ $store.getters.getUserInfo.username }}<a-icon class="icon-down" type="down" /></li>
+            <li @click="loginOut">退出</li>
         </ul>
     </div>
 </template>
 
 <script>
 export default {
-    
+    data(){
+        return{
+            currentRoute:this.$route.matched
+        }
+        
+    },
+    created(){
+        console.log(this.$route);
+    },
+    watch:{
+        "$route"(to,from){
+            //console.log('====',this.$route);
+           this.currentRoute = this.$route.matched;
+           console.log(this.$route.matched.length);
+        }
+    },
     methods: {
         toggleCollapsed() {
             this.$store.dispatch('asyncChangeCollapsed')
         },
+        loginOut(){
+            this.$store.dispatch('loginOut')
+            this.$router.push({name:'Login'})
+        }
     },
 }
 </script>
